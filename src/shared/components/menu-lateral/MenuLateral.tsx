@@ -1,38 +1,45 @@
-import { Avatar, Box, Drawer, useTheme } from '@mui/material';
+import { Avatar, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from '@mui/material';
+import { Box } from '@mui/system';
+
+import { useAuthContext } from '../../contexts';
 
 interface IMenuLateralProps {
   children: React.ReactNode;
 }
-
 export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
   const theme = useTheme();
-  
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const { logout } = useAuthContext();
+
   return (
     <>
-      <Drawer variant='permanent'>
-        <Box width={theme.spacing(28)} display="flex">
+      <Drawer variant={smDown ? 'temporary' : 'permanent'}>
+        <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
+
           <Box width="100%" height={theme.spacing(20)} display="flex" alignItems="center" justifyContent="center">
-            <Avatar 
-              sx={{ width: theme.spacing(12), height: theme.spacing(12) }}
-              alt="Lucas Henrique"
-              src="https://github.com/Lucas-Henrique-Lopes-Costa.png" 
+            <Avatar
+              sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
+              src="https://github.com/Lucas-Henrique-Lopes-Costa.png"
             />
           </Box>
-        </Box>
-      </Drawer>
-      <Drawer variant='permanent'>
-        <Box width={theme.spacing(28)} display="flex">
-          <Box width="100%" height={theme.spacing(20)} display="flex" alignItems="center" justifyContent="center">
-            <Avatar 
-              sx={{ width: theme.spacing(12), height: theme.spacing(12) }}
-              alt="Lucas Henrique"
-              src="https://github.com/Lucas-Henrique-Lopes-Costa.png" 
-            />
+
+          <Divider />
+
+          <Box>
+            <List component="nav">
+              <ListItemButton onClick={logout}>
+                <ListItemIcon>
+                  <Icon>logout</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Sair" />
+              </ListItemButton>
+            </List>
           </Box>
         </Box>
       </Drawer>
 
-      <Box height="100vh" marginLeft={theme.spacing(28)}>
+      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(28)}>
         {children}
       </Box>
     </>

@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Exemplo de uso de React com Typescript
+
+<!-- pega a o mobile.gif do repositorio -->
+![mobile](./mobile.gif)
+
 ## Available Scripts
 
 In the project directory, you can run:

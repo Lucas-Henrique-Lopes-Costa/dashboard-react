@@ -2,6 +2,7 @@ import { Avatar, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, List
 import { Box } from '@mui/system';
 
 import { useAuthContext } from '../../contexts';
+import { useDrawerContext } from '../../contexts';
 
 interface IMenuLateralProps {
   children: React.ReactNode;
@@ -11,10 +12,11 @@ export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   const { logout } = useAuthContext();
+  const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
 
   return (
     <>
-      <Drawer variant={smDown ? 'temporary' : 'permanent'}>
+      <Drawer open={isDrawerOpen} variant={smDown ? 'temporary' : 'permanent'} onClose={toggleDrawerOpen}>
         <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
 
           <Box width="100%" height={theme.spacing(20)} display="flex" alignItems="center" justifyContent="center">
@@ -36,6 +38,7 @@ export const MenuLateral: React.FC<IMenuLateralProps> = ({ children }) => {
               </ListItemButton>
             </List>
           </Box>
+
         </Box>
       </Drawer>
 

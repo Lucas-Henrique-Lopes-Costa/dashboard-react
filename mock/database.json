@@ -92,6 +92,6 @@
     }
   ],
   "auth": {
-    "accessToken": ""
+    "accessToken": "aaa.bbb.ccc"
   }
 }
